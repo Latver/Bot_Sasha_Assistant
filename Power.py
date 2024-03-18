@@ -34,7 +34,28 @@ def exit_menu_power(label_line_symbols, button1, button2, button3, button4, butt
         button14.destroy()
         button15.destroy()
 
-def exit_menu_reboot(label_line_symbols, button1, button2, button3, button4, button5, button7, button8, button9, button10, button15, window):
+def exit_menu_power_templates(label_line_symbols, button6, button7, button8, button9, button9_off, button10, button14, button15, window):
+    try:
+        button6.grid()
+        button9_off.grid()
+        button14.grid()
+        button7.destroy()
+        button8.destroy()
+        button9.destroy()
+        button10.destroy()
+        button15.destroy()
+    except (NameError, TclError, AttributeError):
+        label_line_symbols.destroy()
+        button7.grid()
+        button8.grid()
+        button9.grid()
+        button10.grid()
+        button6.destroy()
+        button9.destroy()
+        button14.destroy()
+        button15.destroy()
+
+def exit_menu_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button14, button15, window):
     try:
         label_line_symbols.destroy()
         button1.grid()
@@ -60,11 +81,11 @@ def exit_menu_reboot(label_line_symbols, button1, button2, button3, button4, but
         button10.destroy()
         button15.destroy()
 
-def exit_menu_reboot_templates(label_line_symbols, button1, button2, button3, button4, button5, button6, button7, button9, button14, button15, window):
+def exit_menu_reboot_templates(label_line_symbols, button6, button7, button8, button9, button9_reboot, button10, button14, button15, window):
     try:
         button7.grid()
         button8.grid()
-        button9.grid()
+        button9_reboot.grid()
         button10.grid()
         button6.destroy()
         button9.destroy()
@@ -74,7 +95,7 @@ def exit_menu_reboot_templates(label_line_symbols, button1, button2, button3, bu
         label_line_symbols.destroy()
         button7.grid()
         button8.grid()
-        button9.grid()
+        button9_reboot.grid()
         button10.grid()
         button6.destroy()
         button9.destroy()
@@ -252,53 +273,33 @@ def Calc_sec(label_line_symbols, button1, button2, button3, button4, button5, wi
     time_1.configure(font=font_2)
 
 #Шаблоны
-def templates(window_power_pc, window):
+def templates(label_line_symbols, button6, button9_off, button14, button15, window):
     font = ctk.CTkFont(family='Arial', size=20)
 
-    def exit_menu_5(window_power_pc, window):
-        try:
-            win.deiconify()
-            window.destroy()
-        except NameError:
-            window.deiconify()
-            window.destroy()
-        except TclError:
-            window.deiconify()
-            window.destroy()
-        except AttributeError:
-            window.deiconify()
-            window.destroy()
     try:
-        win.withdraw()
-    except NameError:
-        pass
-    except TclError:
-        pass
-    except AttributeError:
+        button6.grid_remove()
+        button9_off.grid_remove()
+        button14.grid_remove()
+    except (NameError, TclError, AttributeError):
         pass
 
-    window = ctk.CTkToplevel(window_power_pc)
-    window.title('Шаблоны')
-    window.resizable(width=False, height=False)
-    window.columnconfigure([0], weight = 1, minsize = 150)
-    window.rowconfigure([0, 1, 2, 3], weight = 1, minsize = 0)
-    window.protocol('WM_DELETE_WINDOW', lambda: exit_menu_5(window_power_pc, window))
-
-    # Задаем размеры окна
-    window.geometry(f"{center_x - int(window_width / 1.7)}+{center_y - int(window_height / 5)}")
-
+    button15 = ctk.CTkButton(window, text = '', command = lambda: exit_menu_power_templates(label_line_symbols, button6, button7, button8, button9, button9_off, button10, button14, button15, window))
     button7 = ctk.CTkButton(window, text = 'Выключить через 30 минут', width = 30, command = Power_off2, font=font, anchor='w')
-    button7.grid(column = 0, row = 0, stick = 'we', pady=2)
-    button7.configure(corner_radius=8, hover=True, hover_color='green', anchor="w")
     button8 = ctk.CTkButton(window, text = 'Выключить через 1 час', width = 30, command = Power_off3, font=font, anchor='w')
-    button8.grid(column = 0, row = 1, stick = 'we', pady=2)
-    button8.configure(corner_radius=8, hover=True, hover_color='green', anchor="w")
     button9 = ctk.CTkButton(window, text = 'Выключить через 1.5 часа', width = 30, command = Power_off4, font=font, anchor='w')
-    button9.grid(column = 0, row = 2, stick = 'we', pady=2)
-    button9.configure(corner_radius=8, hover=True, hover_color='green', anchor="w")
     button10 = ctk.CTkButton(window, text = 'Выключить через 2 часа', width = 30, command = Power_off5, font=font, anchor='w')
-    button10.grid(column = 0, row = 3, stick = 'we', pady=2)
-    button10.configure(corner_radius=8, hover=True, hover_color='green', anchor="w")
+
+    button15.grid(column = 4, row = 0, stick = 'w', pady=2, padx=2)
+    button7.grid(column = 4, row = 1, stick = 'we', pady=2, padx=2)
+    button8.grid(column = 4, row = 2, stick = 'we', pady=2, padx=2)
+    button9.grid(column = 4, row = 3, stick = 'we', pady=2, padx=2)
+    button10.grid(column = 4, row = 4, stick = 'we', pady=2, padx=2)
+
+    button15.configure(image=photo_image_exit, compound=LEFT, width=1, corner_radius=8, hover=True, hover_color='green', font=font, anchor="w")
+    button7.configure(corner_radius=8, hover=True, hover_color='green', font=font)
+    button8.configure(corner_radius=8, hover=True, hover_color='green', font=font)
+    button9.configure(corner_radius=8, hover=True, hover_color='green', font=font)
+    button10.configure(corner_radius=8, hover=True, hover_color='green', font=font)
 
 #Выключение
 def Power_off1():
@@ -349,23 +350,23 @@ def Power_off(label_line_symbols, button1, button2, button3, button4, button5, w
     except (NameError, TclError, AttributeError):
         pass
 
-    button15 = ctk.CTkButton(window, text = '', command = lambda: exit_menu_power(label_line_symbols, button1, button2, button3, button4, button5, button6, button9, button14, button15, window))
+    button15 = ctk.CTkButton(window, text = '', command = lambda: exit_menu_power(label_line_symbols, button1, button2, button3, button4, button5, button6, button9_off, button14, button15, window))
     button6 = ctk.CTkButton(window, text = 'Выключить', width = 32, command = Power_off1, font=font)
-    button14 = ctk.CTkButton(window, text = 'Шаблоны', width = 32, command = lambda: templates(window_power_pc), font=font)
-    button9 = ctk.CTkButton(window, text = 'Отмена неизбежного выключения', width = 32, command = stop, font=font)
+    button14 = ctk.CTkButton(window, text = 'Шаблоны', width = 32, command = lambda: templates(label_line_symbols, button6, button9_off, button14, button15, window), font=font)
+    button9_off = ctk.CTkButton(window, text = 'Отмена неизбежного выключения', width = 32, command = stop, font=font)
 
     button15.grid(column = 4, row = 0, stick = 'w', pady=2, padx=2)
     button6.grid(column = 4, row = 2, stick = 'wens', pady=2, padx=2)
     button14.grid(column = 5, row = 2, stick = 'wens', pady=2, padx=2)
-    button9.grid(column = 4, row = 3, columnspan = 2, stick = 'wens', pady=2, padx=2)
+    button9_off.grid(column = 4, row = 3, columnspan = 2, stick = 'wens', pady=2, padx=2)
 
     button15.configure(image=photo_image_exit, compound=LEFT, width=1, corner_radius=8, hover=True, hover_color='green', font=font, anchor="w")
     button6.configure(corner_radius=8, hover=True, hover_color='green', font=font)
     button14.configure(corner_radius=8, hover=True, hover_color='green', font=font)
-    button9.configure(corner_radius=8, hover=True, hover_color='green', font=font)
+    button9_off.configure(corner_radius=8, hover=True, hover_color='green', font=font)
 
 #Перезагрузка пк
-def templates_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button9, button14, button15, window):
+def templates_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button9, button9_reboot, button14, button15, window):
     font = ctk.CTkFont(family='Arial', size=20)
 
     try:
@@ -380,7 +381,7 @@ def templates_reboot(label_line_symbols, button1, button2, button3, button4, but
     except (NameError, TclError, AttributeError):
         pass
 
-    button15 = ctk.CTkButton(window, text = '', command = lambda: exit_menu_reboot(label_line_symbols, button1, button2, button3, button4, button5, button7, button8, button9, button10, button15, window))
+    button15 = ctk.CTkButton(window, text = '', command = lambda: exit_menu_reboot_templates(label_line_symbols, button6, button7, button8, button9, button9_reboot, button10, button14, button15, window))
     button7 = ctk.CTkButton(window, text = 'Перезагрузить через 30 минут', width = 30, command = Reboot2, font=font)
     button8 = ctk.CTkButton(window, text = 'Перезагрузить через 1 час', width = 30, command = Reboot3, font=font)
     button9 = ctk.CTkButton(window, text = 'Перезагрузить через 1.5 часа', width = 30, command = Reboot4, font=font)
@@ -414,19 +415,19 @@ def Reboot(label_line_symbols, button1, button2, button3, button4, button5, wind
 
     button15 = ctk.CTkButton(window, text = '', command = lambda: exit_menu_power(label_line_symbols, button1, button2, button3, button4, button5, button6, button9, button14, button15, window))
     button6 = ctk.CTkButton(window, text = 'Перезагрузить', width = 32, command = Reboot1, font=font)
-    button14 = ctk.CTkButton(window, text = 'Шаблоны', width = 32, command = lambda: templates_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button9, button14, button15, window), font=font)
-    button9 = ctk.CTkButton(window, text = 'Отмена неизбежной перезагрузки', width = 32, command = stop, font=font)
+    button14 = ctk.CTkButton(window, text = 'Шаблоны', width = 32, command = lambda: templates_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button9_reboot, button14, button15, window), font=font)
+    button9_reboot = ctk.CTkButton(window, text = 'Отмена неизбежной перезагрузки', width = 32, command = stop, font=font)
 
     label_line_symbols.grid(column = 3, row = 0, rowspan = 8, stick = 'wens', pady = 2, padx = 2)
     button15.grid(column = 4, row = 0, stick = 'w', pady=2, padx=2)
     button6.grid(column = 4, row = 2, stick = 'wens', pady=2, padx=2)
     button14.grid(column = 4, row = 3, stick = 'wens', pady=2, padx=2)
-    button9.grid(column = 4, row = 4, stick = 'wens', pady=2, padx=2)
+    button9_reboot.grid(column = 4, row = 4, stick = 'wens', pady=2, padx=2)
 
     button15.configure(image=photo_image_exit, compound=LEFT, width=1, corner_radius=8, hover=True, hover_color='green', font=font, anchor="w")
     button6.configure(corner_radius=8, hover=True, hover_color='green', font=font)
     button14.configure(corner_radius=8, hover=True, hover_color='green', font=font)
-    button9.configure(corner_radius=8, hover=True, hover_color='green', font=font)
+    button9_reboot.configure(corner_radius=8, hover=True, hover_color='green', font=font)
 
 #Режим сна пк
 def Sleep():
