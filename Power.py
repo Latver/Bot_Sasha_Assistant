@@ -55,7 +55,7 @@ def exit_menu_power_templates(label_line_symbols, button6, button7, button8, but
         button14.destroy()
         button15.destroy()
 
-def exit_menu_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button14, button15, window):
+def exit_menu_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button9_reboot, button14, button15, window):
     try:
         label_line_symbols.destroy()
         button1.grid()
@@ -63,10 +63,9 @@ def exit_menu_reboot(label_line_symbols, button1, button2, button3, button4, but
         button3.grid()
         button4.grid()
         button5.grid()
-        button7.destroy()
-        button8.destroy()
-        button9.destroy()
-        button10.destroy()
+        button6.destroy()
+        button9_reboot.destroy()
+        button14.destroy()
         button15.destroy()
     except (NameError, TclError, AttributeError):
         label_line_symbols.destroy()
@@ -75,21 +74,20 @@ def exit_menu_reboot(label_line_symbols, button1, button2, button3, button4, but
         button3.grid()
         button4.grid()
         button5.grid()
-        button7.destroy()
-        button8.destroy()
-        button9.destroy()
-        button10.destroy()
+        button6.destroy()
+        button9_reboot.destroy()
+        button14.destroy()
         button15.destroy()
 
 def exit_menu_reboot_templates(label_line_symbols, button6, button7, button8, button9, button9_reboot, button10, button14, button15, window):
     try:
-        button7.grid()
-        button8.grid()
-        button9_reboot.grid()
-        button10.grid()
-        button6.destroy()
+        button7.destroy()
+        button8.destroy()
         button9.destroy()
-        button14.destroy()
+        button10.destroy()
+        button6.grid()
+        button9_reboot.grid()
+        button14.grid()
         button15.destroy()
     except (NameError, TclError, AttributeError):
         label_line_symbols.destroy()
@@ -290,10 +288,10 @@ def templates(label_line_symbols, button6, button9_off, button14, button15, wind
     button10 = ctk.CTkButton(window, text = 'Выключить через 2 часа', width = 30, command = Power_off5, font=font, anchor='w')
 
     button15.grid(column = 4, row = 0, stick = 'w', pady=2, padx=2)
-    button7.grid(column = 4, row = 1, stick = 'we', pady=2, padx=2)
-    button8.grid(column = 4, row = 2, stick = 'we', pady=2, padx=2)
-    button9.grid(column = 4, row = 3, stick = 'we', pady=2, padx=2)
-    button10.grid(column = 4, row = 4, stick = 'we', pady=2, padx=2)
+    button7.grid(column = 4, row = 1, stick = 'wens', pady=2, padx=2)
+    button8.grid(column = 4, row = 2, stick = 'wens', pady=2, padx=2)
+    button9.grid(column = 4, row = 3, stick = 'wens', pady=2, padx=2)
+    button10.grid(column = 4, row = 4, stick = 'wens', pady=2, padx=2)
 
     button15.configure(image=photo_image_exit, compound=LEFT, width=1, corner_radius=8, hover=True, hover_color='green', font=font, anchor="w")
     button7.configure(corner_radius=8, hover=True, hover_color='green', font=font)
@@ -366,7 +364,7 @@ def Power_off(label_line_symbols, button1, button2, button3, button4, button5, w
     button9_off.configure(corner_radius=8, hover=True, hover_color='green', font=font)
 
 #Перезагрузка пк
-def templates_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button9, button9_reboot, button14, button15, window):
+def templates_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button9_reboot, button14, button15, window):
     font = ctk.CTkFont(family='Arial', size=20)
 
     try:
@@ -376,7 +374,7 @@ def templates_reboot(label_line_symbols, button1, button2, button3, button4, but
         button4.grid_remove()
         button5.grid_remove()
         button6.grid_remove()
-        button9.grid_remove()
+        button9_reboot.grid_remove()
         button14.grid_remove()
     except (NameError, TclError, AttributeError):
         pass
@@ -388,10 +386,10 @@ def templates_reboot(label_line_symbols, button1, button2, button3, button4, but
     button10 = ctk.CTkButton(window, text = 'Перезагрузить через 2 часа', width = 30, command = Reboot5, font=font)
 
     button15.grid(column = 4, row = 0, stick = 'w', pady=2, padx=2)
-    button7.grid(column = 4, row = 1, stick = 'we', pady=2, padx=2)
-    button8.grid(column = 4, row = 2, stick = 'we', pady=2, padx=2)
-    button9.grid(column = 4, row = 3, stick = 'we', pady=2, padx=2)
-    button10.grid(column = 4, row = 4, stick = 'we', pady=2, padx=2)
+    button7.grid(column = 4, row = 1, stick = 'wens', pady=2, padx=2)
+    button8.grid(column = 4, row = 2, stick = 'wens', pady=2, padx=2)
+    button9.grid(column = 4, row = 3, stick = 'wens', pady=2, padx=2)
+    button10.grid(column = 4, row = 4, stick = 'wens', pady=2, padx=2)
 
     button15.configure(image=photo_image_exit, compound=LEFT, width=1, corner_radius=8, hover=True, hover_color='green', font=font, anchor="w")
     button7.configure(corner_radius=8, hover=True, hover_color='green', font=font)
@@ -413,9 +411,9 @@ def Reboot(label_line_symbols, button1, button2, button3, button4, button5, wind
 
     label_line_symbols = ctk.CTkLabel(window, text = '║\n║\n║\n║\n║\n║\n║\n║\n║\n║\n║\n║\n║\n║\n║\n║')
 
-    button15 = ctk.CTkButton(window, text = '', command = lambda: exit_menu_power(label_line_symbols, button1, button2, button3, button4, button5, button6, button9, button14, button15, window))
+    button15 = ctk.CTkButton(window, text = '', command = lambda: exit_menu_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button9_reboot, button14, button15, window))
     button6 = ctk.CTkButton(window, text = 'Перезагрузить', width = 32, command = Reboot1, font=font)
-    button14 = ctk.CTkButton(window, text = 'Шаблоны', width = 32, command = lambda: templates_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6, button9_reboot, button14, button15, window), font=font)
+    button14 = ctk.CTkButton(window, text = 'Шаблоны', width = 32, command = lambda: templates_reboot(label_line_symbols, button1, button2, button3, button4, button5, button6,  button9_reboot, button14, button15, window), font=font)
     button9_reboot = ctk.CTkButton(window, text = 'Отмена неизбежной перезагрузки', width = 32, command = stop, font=font)
 
     label_line_symbols.grid(column = 3, row = 0, rowspan = 8, stick = 'wens', pady = 2, padx = 2)
